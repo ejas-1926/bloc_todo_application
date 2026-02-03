@@ -5,11 +5,36 @@ class TodoCubit extends Cubit<List<TodoModel>> {
   TodoCubit() : super([]);
 
   void addtodo(String todotext) {
+    if (todotext.isEmpty) {
+      addError("text cannot be empty");
+      return;
+    }
+
     final newstate = [
       ...state,
       TodoModel(name: todotext, createdat: DateTime.now()),
     ];
     emit(newstate);
+  }
+
+  //if something error happens we can call the adderror method the call back for that function is onError
+  ///you can display the error message here
+  ///
+
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    super.onError(error, stackTrace);
+
+    print(error.toString());
+  }
+
+  //this will be called when the state changes ie when ever a new state is emitted
+
+  @override
+  void onChange(Change<List<TodoModel>> change) {
+    super.onChange(change);
+
+    print(change);
   }
 }
 
@@ -25,7 +50,6 @@ class TodoCubit extends Cubit<List<TodoModel>> {
 ///initially this is an empty list 
 ///one more thing is when we add a value to  a list that is not possible state will not get reflected like that 
 ///we need to create new instances of list each time 
-///
-///
+
 // earlier we were doing just state + 1 in the other project actually we are sending a new instance every time whether its int or list or what ever 
 //so even if we add or delete or something then what we will do is we will create a new list each time and emit that 

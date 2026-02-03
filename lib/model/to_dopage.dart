@@ -48,7 +48,7 @@ class _ToDopageState extends State<ToDopage> {
 }
 
 
-//when ever we want some cubit or bloc,you just need to ask the bloc provider 
+//whenever we want some cubit or bloc,you just need to ask the bloc provider 
 //All the registered blocs will be available through the function BlocProvider.of<Cubitname>(context)
 //in the case of builders or listeners we dont need the bloc or cubit to be passed even if we dont pass we can
 ///cubit can find through the widget tree
